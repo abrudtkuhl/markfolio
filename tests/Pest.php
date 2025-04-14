@@ -24,18 +24,18 @@ uses(TestCase::class)->in('Feature', 'Unit');
 |
 */
 
-expect()->extend('toBeMarkdownPage', function (string $title = null) {
+expect()->extend('toBeMarkdownPage', function (?string $title = null) {
     expect($this->value)
         ->toBeArray()
         ->toHaveKey('content')
         ->toHaveKey('meta');
-        
+
     if ($title) {
         expect($this->value['title'])->toBe($title);
     } else {
         expect($this->value)->toHaveKey('title');
     }
-    
+
     return $this;
 });
 
@@ -44,7 +44,7 @@ expect()->extend('toBeValidHtml', function () {
         ->toBeString()
         ->toContain('>')
         ->not->toContain('```');
-        
+
     return $this;
 });
 
@@ -58,20 +58,19 @@ expect()->extend('toBeValidHtml', function () {
 */
 
 use Illuminate\Support\Facades\File;
-use Markfolio\Middleware\MarkdownRenderer;
 
 function createMarkdownFile(string $path, ?string $title = null, ?string $content = null): void
 {
-    $filePath = resource_path('content/' . ltrim($path, '/'));
+    $filePath = resource_path('content/'.ltrim($path, '/'));
     $dirName = dirname($filePath);
-    
-    if (!is_dir($dirName)) {
+
+    if (! is_dir($dirName)) {
         mkdir($dirName, 0755, true);
     }
-    
+
     $title = $title ?? basename($path, '.md');
     $content = $content ?? "# {$title}";
-    
+
     $fileContent = <<<EOT
 ---
 title: {$title}
@@ -80,7 +79,7 @@ layout: layouts.app
 
 {$content}
 EOT;
-    
+
     file_put_contents($filePath, $fileContent);
 }
 
@@ -88,7 +87,7 @@ function createTestMarkdownFile(string $path, ?string $title = null, ?string $la
 {
     $title = $title ?? basename($path);
     $layout = $layout ?? 'layouts.app';
-    
+
     $content = <<<EOT
 ---
 title: {$title}
@@ -101,4 +100,4 @@ This is a test page.
 EOT;
 
     File::put(resource_path("content/{$path}.md"), $content);
-} 
+}

@@ -25,18 +25,18 @@
         "symfony/yaml": "^6.0"
     },
     "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/larastan": "^2.10",
         "orchestra/testbench": "^8.0",
         "pestphp/pest": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0",
-        "nunomaduro/larastan": "^2.0",
-        "laravel/pint": "^1.0"
+        "pestphp/pest-plugin-laravel": "^2.0"
     },
     "suggest": {
         "laravel/folio": "Required for Laravel Folio integration"
     },
     "scripts": {
         "test": "vendor/bin/pest",
-        "analyse": "vendor/bin/phpstan analyse",
+        "analyse": "vendor/bin/phpstan analyse --memory-limit=2G",
         "format": "vendor/bin/pint"
     },
     "extra": {

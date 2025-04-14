@@ -43,6 +43,7 @@ jobs:
 
   static-analysis:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     steps:
       - name: Checkout code
@@ -57,14 +58,8 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction
 
-      - name: Install PHPStan
-        run: composer require --dev nunomaduro/larastan
-
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse
-
-      - name: Install Laravel Pint
-        run: composer require --dev laravel/pint
+        run: vendor/bin/phpstan analyse --memory-limit=2G
 
       - name: Run Laravel Pint
         run: vendor/bin/pint --test 

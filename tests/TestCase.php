@@ -2,9 +2,9 @@
 
 namespace Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Markfolio\MarkfolioServiceProvider;
 use Markfolio\Middleware\MarkdownRenderer;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
@@ -22,15 +22,16 @@ abstract class TestCase extends Orchestra
     protected function defineRoutes($router)
     {
         $router->get('/{path}', function ($path) {
-            $middleware = new MarkdownRenderer();
+            $middleware = new MarkdownRenderer;
+
             return $middleware->handle(request(), function () {
                 return response('Not found', 404);
             });
         })->where('path', '.*')->middleware(MarkdownRenderer::class);
     }
-    
+
     protected function defineDatabaseMigrations(): void
     {
         // Define any migrations needed for testing
     }
-} 
+}

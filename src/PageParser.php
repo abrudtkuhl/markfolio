@@ -2,8 +2,8 @@
 
 namespace Markfolio;
 
-use Spatie\YamlFrontMatter\YamlFrontMatter;
 use League\CommonMark\CommonMarkConverter;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class PageParser
 {
@@ -16,7 +16,7 @@ class PageParser
 
     public function toViewData(): array
     {
-        $html = (new CommonMarkConverter())->convertToHtml($this->document->body());
+        $html = (new CommonMarkConverter)->convertToHtml($this->document->body());
         $matter = $this->document->matter();
 
         return [
@@ -26,4 +26,4 @@ class PageParser
             'layout' => $matter['layout'] ?? config('markfolio.default_layout'),
         ];
     }
-} 
+}

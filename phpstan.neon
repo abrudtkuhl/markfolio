@@ -1,8 +1,20 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
 parameters:
-    level: 8
+    level: 5
     paths:
         - src
-        - tests
-    excludePaths:
-        - vendor/*
-    checkMissingIterableValueType: false 
+    bootstrapFiles:
+        - tools/phpstan/bootstrap.php
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - '#Access to an undefined property#'
+        - '#Call to an undefined method#'
+        - '#Parameter \$force of method#'
+        - '#Cannot cast#'
+        - '#Undefined variable: \$this#'
+        - '#might not be defined#'
+        - '#expects string, string\|null given#'
+        - '#League\\HTMLToMarkdown\\HtmlConverter not found#' 

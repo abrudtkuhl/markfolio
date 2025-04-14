@@ -4,7 +4,6 @@ namespace Markfolio\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\View;
 use Markfolio\PageParser;
 use Symfony\Component\Yaml\Yaml;
 
@@ -18,12 +17,13 @@ class DebugCommand extends Command
     {
         $path = $this->argument('path');
 
-        if (!$path) {
+        if (! $path) {
             $path = $this->ask('Enter the path to the markdown file');
         }
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             $this->error("File not found: {$path}");
+
             return self::FAILURE;
         }
 
@@ -48,4 +48,4 @@ class DebugCommand extends Command
 
         return self::SUCCESS;
     }
-} 
+}

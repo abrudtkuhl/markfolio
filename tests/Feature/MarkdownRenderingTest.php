@@ -3,15 +3,12 @@
 namespace Markfolio\Tests\Feature;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\View;
-use Markfolio\Middleware\MarkdownRenderer;
-use Tests\TestCase;
 
 beforeEach(function () {
     config()->set('markfolio.content_directory', resource_path('content'));
     config()->set('markfolio.default_layout', 'layouts.app');
-    
-    if (!File::exists(resource_path('content'))) {
+
+    if (! File::exists(resource_path('content'))) {
         File::makeDirectory(resource_path('content'), 0755, true);
     }
 });
@@ -23,7 +20,7 @@ afterEach(function () {
 });
 
 it('can render markdown page', function () {
-    $markdown = <<<EOT
+    $markdown = <<<'EOT'
 ---
 title: Test Page
 layout: layouts.app
@@ -50,7 +47,7 @@ it('returns 404 for nonexistent page', function () {
 });
 
 it('can render without layout', function () {
-    $markdown = <<<EOT
+    $markdown = <<<'EOT'
 ---
 title: No Layout Test
 ---
@@ -67,4 +64,4 @@ EOT;
     $response->assertStatus(200)
         ->assertSee('No Layout Test')
         ->assertSee('Testing without layout');
-}); 
+});
