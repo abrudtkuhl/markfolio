@@ -2,7 +2,7 @@
     "name": "abrudtkuhl/markfolio",
     "description": "A Laravel package for rendering markdown files as pages",
     "type": "library",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "license": "MIT",
     "autoload": {
         "psr-4": {
