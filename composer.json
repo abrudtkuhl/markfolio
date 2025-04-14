@@ -31,6 +31,9 @@
         "nunomaduro/larastan": "^2.0",
         "laravel/pint": "^1.0"
     },
+    "suggest": {
+        "laravel/folio": "Required for Laravel Folio integration"
+    },
     "scripts": {
         "test": "vendor/bin/pest",
         "analyse": "vendor/bin/phpstan analyse",
