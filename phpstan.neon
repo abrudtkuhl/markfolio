@@ -7,14 +7,13 @@ parameters:
         - src
     bootstrapFiles:
         - tools/phpstan/bootstrap.php
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
     ignoreErrors:
-        - '#Access to an undefined property#'
-        - '#Call to an undefined method#'
-        - '#Parameter \$force of method#'
-        - '#Cannot cast#'
-        - '#Undefined variable: \$this#'
-        - '#might not be defined#'
-        - '#expects string, string\|null given#'
-        - '#League\\HTMLToMarkdown\\HtmlConverter not found#' 
+        -
+            message: '#Call to function method_exists\(\) with .+Folio.+ will always evaluate to false\.#'
+            path: src/MarkfolioServiceProvider.php
+        -
+            message: '#Instantiated class League\\HTMLToMarkdown\\HtmlConverter not found\.#'
+            path: src/Import/ContentImporter.php
+        -
+            message: '#Variable \$headers might not be defined\.#'
+            path: src/Import/ContentImporter.php 

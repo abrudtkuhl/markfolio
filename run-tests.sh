@@ -11,8 +11,12 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Running PHPStan analysis..."
-vendor/bin/phpstan analyse --memory-limit=2G || true
-echo "⚠️ PHPStan reported issues that need attention before final release."
+vendor/bin/phpstan analyse --memory-limit=2G
+
+if [ $? -ne 0 ]; then
+    echo "❌ PHPStan analysis failed!"
+    exit 1
+fi
 
 echo "Running Laravel Pint code style check..."
 vendor/bin/pint --test
@@ -22,5 +26,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "✅ Tests passed! Package is ready for initial testing."
-echo "Note: Address PHPStan warnings before final release." 
+echo "✅ All tests passed! Package is ready for publishing." 
