@@ -15,7 +15,7 @@ class PublishCommand extends Command
 
     protected $description = 'Publish Markfolio assets (config, views)';
 
-    public function handle()
+    public function handle(): int
     {
         $this->info('Publishing Markfolio assets...');
         
@@ -42,10 +42,10 @@ class PublishCommand extends Command
         
         $this->info('Markfolio assets published successfully!');
         
-        return 0;
+        return self::SUCCESS;
     }
     
-    protected function publishConfig($force)
+    protected function publishConfig(bool $force): void
     {
         $configPath = config_path('markfolio.php');
         $packageConfigPath = __DIR__ . '/../../config/markfolio.php';
@@ -60,7 +60,7 @@ class PublishCommand extends Command
         $this->info('Configuration file published to: ' . $configPath);
     }
     
-    protected function publishViews($force)
+    protected function publishViews(bool $force): void
     {
         $viewsPath = resource_path('views/vendor/markfolio');
         $packageViewsPath = __DIR__ . '/../../resources/views';
@@ -79,7 +79,7 @@ class PublishCommand extends Command
         $this->info('View files published to: ' . $viewsPath);
     }
     
-    protected function ensureContentDirectoryExists()
+    protected function ensureContentDirectoryExists(): void
     {
         $contentDir = config('markfolio.content_directory', resource_path('content'));
         
