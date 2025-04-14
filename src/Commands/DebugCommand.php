@@ -27,24 +27,22 @@ class DebugCommand extends Command
             return self::FAILURE;
         }
 
-        $content = File::get($path);
-        $parser = new PageParser();
-        $page = $parser->parse($content);
+        $parser = new PageParser($path);
+        $viewData = $parser->toViewData();
 
         $this->info('Front Matter:');
-        $this->line(Yaml::dump($page->frontMatter(), 4, 2));
+        $this->line(Yaml::dump($viewData['meta'] ?? [], 4, 2));
 
-        $this->info("\nContent:');
-        $this->line($page->content());
+        $this->info("\nContent:");
+        $this->line($viewData['content'] ?? '');
 
-        $this->info("\nRendered HTML:');
-        $this->line($page->toHtml());
+        $this->info("\nRendered HTML:");
+        $this->line($viewData['content'] ?? '');
 
-        if (class_exists('Laravel\Folio\Folio')) {
-            $this->info("\nFolio Integration:');
+        $this->info("\nFolio Integration:");
+        if (class_exists('Laravel\\Folio\\Folio')) {
             $this->line('Folio is installed and available');
         } else {
-            $this->info("\nFolio Integration:');
             $this->line('Folio is not installed. Install it with: composer require laravel/folio');
         }
 
