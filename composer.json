@@ -1,0 +1,54 @@
+{
+    "name": "abrudtkuhl/markfolio",
+    "description": "A Laravel package for rendering markdown files as pages",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Markfolio\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0",
+        "illuminate/contracts": "^10.0",
+        "illuminate/view": "^10.0",
+        "illuminate/filesystem": "^10.0",
+        "league/commonmark": "^2.4",
+        "spatie/yaml-front-matter": "^2.0",
+        "symfony/yaml": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "nunomaduro/larastan": "^2.0",
+        "laravel/pint": "^1.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Markfolio\\MarkfolioServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
