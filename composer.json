@@ -1,9 +1,16 @@
 {
     "name": "abrudtkuhl/markfolio",
     "description": "A Laravel package for rendering markdown files as pages",
-    "type": "library",
-    "version": "0.0.1",
+    "keywords": ["laravel", "markdown", "pages", "folio"],
+    "homepage": "https://github.com/abrudtkuhl/markfolio",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Andy Brudtkuhl",
+            "email": "abrudtkuhl@pm.me",
+            "homepage": "https://brudtkuhl.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Markfolio\\": "src/"
@@ -22,7 +29,8 @@
         "illuminate/filesystem": "^10.0|^11.0|^12.0",
         "league/commonmark": "^2.4",
         "spatie/yaml-front-matter": "^2.0",
-        "symfony/yaml": "^6.0"
+        "symfony/yaml": "^6.0",
+        "laravel/folio": "^1.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -30,9 +38,6 @@
         "orchestra/testbench": "^8.0|^9.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0"
-    },
-    "suggest": {
-        "laravel/folio": "Required for Laravel Folio integration"
     },
     "scripts": {
         "test": "vendor/bin/pest",
